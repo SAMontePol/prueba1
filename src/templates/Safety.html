@@ -1,0 +1,30 @@
+{% extends "layout.html" %} {% block content %}
+
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">Safety</h1>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="card " style="width: 18rem; margin: 1em;">
+            <img src="{{ url_for('static', filename='Dmagno.jpg') }}" class="card-img-top" alt="">
+            <div class="card-body">
+                <h5 class="card-title">Calzado de Seguridad</h5>
+                <p class="card-text">Calzado</p>
+                <a href="{{ url_for('SCS') }}" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+
+        <div class="card " style="width: 18rem; margin: 1em;">
+            <img src="{{ url_for('static', filename='Incidentes.jpg') }}" class="card-img-top" alt="">
+            <div class="card-body">
+                <h5 class="card-title">Informe Incidentes</h5>
+                <p class="card-text">Incidentes</p>
+                <a href="{{ url_for('SII') }}" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
