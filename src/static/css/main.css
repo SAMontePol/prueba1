@@ -1,0 +1,11 @@
+.nav {
+    background-color: #003366;
+}
+
+.tx-white {
+    color: #fff;
+}
+
+.tx-white:hover {
+    color: white;
+}
