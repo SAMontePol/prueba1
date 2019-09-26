@@ -1,6 +1,9 @@
 from flask import Flask, render_template
+from flaskwebgui import FlaskUI
 
 app = Flask(__name__)
+
+ui = FlaskUI(app)
 
 @app.route('/')
 def Home():
@@ -64,6 +67,8 @@ def PCPR():
 @app.route('/Planning-KPI')
 def PKPI():
     return render_template('Planning-KPI.html')
+
+#ui.run()
 
 if __name__ == '__main__':
     app.run(port=3000, debug=True)
