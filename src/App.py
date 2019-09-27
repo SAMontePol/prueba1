@@ -1,18 +1,12 @@
 from flask import Flask, render_template
 from flaskwebgui import FlaskUI
-import pyodbc
+import pyodbc 
 
 conn = pyodbc.connect('Driver={SQL Server Native Client 11.0};'
                         'Server=MX1STN9GNDXK2\\DATAWARSERVER;'
                         'Database=POLARIS_MTY;'
                         'Trusted_Connection=yes;')
 
-#cursor = conn.cursor()
-#cursor.execute('Select * from POLARIS_MTY.dbo.Sheet1$')
-#data = cursor.fetchall()
-
-#for row in cursor:
-#   print(row)
 
 def read(conn):
     print("Read")
@@ -52,13 +46,12 @@ app = Flask(__name__)
 
 ui = FlaskUI(app)
 
-#def Add():
-    
+num = 47598
 
 @app.route('/')
 def Home():
     cursor = conn.cursor()
-    cursor.execute('Select * from POLARIS_MTY.dbo.employee where numero = 47598')
+    cursor.execute('Select * from POLARIS_MTY.dbo.employee where numero = ?' , num)
     data = cursor.fetchall()
     return render_template('Home.html', value=data)
 
