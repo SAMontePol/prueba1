@@ -7,19 +7,60 @@ conn = pyodbc.connect('Driver={SQL Server Native Client 11.0};'
                         'Database=POLARIS_MTY;'
                         'Trusted_Connection=yes;')
 
-cursor = conn.cursor()
-cursor.execute('Select * from POLARIS_MTY.dbo.Sheet1$')
+#cursor = conn.cursor()
+#cursor.execute('Select * from POLARIS_MTY.dbo.Sheet1$')
+#data = cursor.fetchall()
 
-for row in cursor:
-    print(row)
+#for row in cursor:
+#   print(row)
+
+def read(conn):
+    print("Read")
+    cursor = conn.cursor()
+    cursor.execute("select * from Sheet1")
+    for row in cursor:
+        print(f'row = {row}')
+    print()
+
+def create(conn):
+    print("Create")
+    cursor = conn.cursor()
+    cursor.execute('insert into Sheet1(a, b values(?,?))',
+    (3232,'catzzz')
+    )
+    conn.commit()
+    read(conn)
+
+def update(conn):
+    print("Update")
+    cursor = conn.cursor()
+    cursor.execute('update Sheet1 set b = ? where a = ?;',
+    ('catzzz', 3232)
+    )
+    conn.commit()
+    read(conn)
+
+def delete(conn):
+    print("Delete")
+    cursor = conn.cursor()
+    cursor.execute('delete from Sheet1 where a = 3232'
+    )
+    conn.commit()
+    read(conn)
 
 app = Flask(__name__)
 
 ui = FlaskUI(app)
 
+#def Add():
+    
+
 @app.route('/')
 def Home():
-    return render_template('Home.html')
+    cursor = conn.cursor()
+    cursor.execute('Select * from POLARIS_MTY.dbo.employee where numero = 47598')
+    data = cursor.fetchall()
+    return render_template('Home.html', value=data)
 
 @app.route('/About')
 def About():

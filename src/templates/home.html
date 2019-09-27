@@ -1,6 +1,6 @@
 {% extends "layout.html" %} {% block content %}
 
-<div id="carouselExampleInterval" class="carousel slide" style="margin-top: 2%" data-ride="carousel">
+<!--<div id="carouselExampleInterval" class="carousel slide" style="margin-top: 2%" data-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item active" data-interval="3000">
             <img src="{{ url_for('static', filename='image1.jpg') }}" class="d-block w-100" alt="">
@@ -20,6 +20,25 @@
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
     </a>
-</div>
+</div>-->
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Cal</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in value %}
+        <tr>
+            <td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td>
+            <td>{{ row[2] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 
 {% endblock %}
