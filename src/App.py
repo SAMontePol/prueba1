@@ -1,5 +1,17 @@
 from flask import Flask, render_template
 from flaskwebgui import FlaskUI
+import pyodbc
+
+conn = pyodbc.connect('Driver={SQL Server Native Client 11.0};'
+                        'Server=MX1STN9GNDXK2\\DATAWARSERVER;'
+                        'Database=POLARIS_MTY;'
+                        'Trusted_Connection=yes;')
+
+cursor = conn.cursor()
+cursor.execute('Select * from POLARIS_MTY.dbo.Sheet1$')
+
+for row in cursor:
+    print(row)
 
 app = Flask(__name__)
 
